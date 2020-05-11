@@ -3,4 +3,11 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+
+    <!--    https://color.adobe.com/pt/trends-->
+    <color name="colorBackground1">#EBEFF2</color>
+    <color name="colorBackground2">#93AEBF</color>
+    <color name="colorBackground3">#648C66</color>
+    <color name="colorBackground4">#D9C148</color>
+    <color name="colorBackground5">#A63838</color>
 </resources>
