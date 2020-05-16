@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.controle.financas.business.ExpenseBusiness
 import br.com.controle.financas.data.model.ExpenseData
-import br.com.controle.financas.data.repository.expense.ExpenseRepositoryImpl
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class ExpenseViewModel : ViewModel() {
@@ -18,17 +18,52 @@ class ExpenseViewModel : ViewModel() {
     val loading: LiveData<Boolean>
         get() = _loading
 
+    init {
+        viewModelScope.launch {
+                try {
+                    print("INIT")
+                    delay(1000)
+                    print("REAL INIT")
+                    _states.postValue(expenseBusiness.fetchExpenseList())
+                } catch (e: Exception) {
+                    println(e.message)
+                } finally {
+                    _loading.postValue(false)
+                }
+        }
+    }
+
+    private val expenseBusiness = ExpenseBusiness()
+
     fun fetchData() {
 
         _loading.postValue(true)
 
         viewModelScope.launch {
             try {
-                _states.postValue(ExpenseBusiness(ExpenseRepositoryImpl()).fetchExpenseList())
+                print("REAL fetchData")
+                delay(5000)
+                print("REAL fetchData")
+                _states.postValue(expenseBusiness.fetchExpenseList())
             } catch (e: Exception) {
                 println(e.message)
             } finally {
                 _loading.postValue(false)
+            }
+        }
+    }
+
+    fun fetchMoreData() {
+        viewModelScope.launch {
+            try {
+                print("REAL fetchMoreData beginning ${System.currentTimeMillis()}")
+                delay(5000)
+                print("REAL fetchMoreData ending ${System.currentTimeMillis()}")
+                val newValue : MutableList<ExpenseData> = mutableListOf(expenseBusiness.fetchExpense())
+                _states.value?.let { newValue.addAll(it) }
+                _states.postValue(newValue.toList())
+            } catch (e: Exception) {
+                println(e.message)
             }
         }
     }

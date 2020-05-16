@@ -12,4 +12,6 @@ class ExpenseRepositoryImpl: ExpenseRepository {
         ExpenseData(name = "Pizza")
     )
 
+    override suspend fun doRequestExpense(): ExpenseData =
+        ExpenseData(description = "vacation", value = BigDecimal.valueOf(300))
 }
