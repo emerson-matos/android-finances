@@ -1,13 +1,16 @@
 package br.com.controle.financas.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import br.com.controle.financas.R
 import br.com.controle.financas.data.model.ExpenseData
-import br.com.controle.financas.ui.main.ExpenseViewModel
+import br.com.controle.financas.ui.main.expense.ExpenseActivity
+import br.com.controle.financas.ui.main.expense.list.ExpenseViewModel
 import kotlinx.android.synthetic.main.item_list_expense.view.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -42,6 +45,11 @@ class ExpenseAdapter(private val viewModel: ExpenseViewModel) :
                 expenseDate.text = SimpleDateFormat("dd/MM/yyyy", Locale("pt-BR")).format(item.date)
                 expenseName.text = item.name
                 expenseValue.text = String.format("%.2f", item.value)
+                setOnClickListener {
+                    Toast.makeText(this.context, "expense detail", Toast.LENGTH_LONG).show()
+                    val intent = Intent(context, ExpenseActivity::class.java)
+                    context.startActivity(intent)
+                }
             }
         }
     }
