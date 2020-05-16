@@ -18,4 +18,4 @@ android:
     - extra-google-m2repository
     - extra-android-m2repository
     - sys-img-armeabi-v7a-android-28
-script: ./gradlew build
+script: ./gradlew build test
