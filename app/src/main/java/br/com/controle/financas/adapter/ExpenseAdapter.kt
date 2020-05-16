@@ -45,6 +45,7 @@ class ExpenseAdapter(private val viewModel: ExpenseViewModel) :
                 expenseDate.text = SimpleDateFormat("dd/MM/yyyy", Locale("pt-BR")).format(item.date)
                 expenseName.text = item.name
                 expenseValue.text = String.format("%.2f", item.value)
+                expenseCurrency.text = item.currency.toString()
                 setOnClickListener {
                     Toast.makeText(this.context, "expense detail", Toast.LENGTH_LONG).show()
                     val intent = Intent(context, ExpenseActivity::class.java)
