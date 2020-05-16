@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_margin="8dp"
+    app:strokeColor="@color/colorAccent"
+    app:strokeWidth="1dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/expenseName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="TextView"
+            android:ellipsize="end"
+            app:layout_constraintHorizontal_weight="3"
+            app:layout_constraintEnd_toStartOf="@+id/expenseCurrency"
+            app:layout_constraintStart_toEndOf="@+id/expenseDate"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Pizza" />
+
+        <TextView
+            android:id="@+id/expenseDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="TextView"
+            android:textAlignment="center"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/expenseName"
+            app:layout_constraintTop_toTopOf="@+id/expenseName"
+            app:layout_constraintBottom_toBottomOf="@+id/expenseName"
+            tools:text="11/02/2018" />
+
+        <TextView
+            android:id="@+id/expenseValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="TextView"
+            android:textAlignment="center"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintEnd_toStartOf="@+id/detailExpenseButton"
+            app:layout_constraintStart_toEndOf="@+id/expenseCurrency"
+            app:layout_constraintBottom_toBottomOf="@+id/expenseName"
+            app:layout_constraintTop_toTopOf="@+id/expenseName"
+            tools:text="11.12" />
+
+        <TextView
+            android:id="@+id/expenseCurrency"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="USD"
+            android:maxLength="3"
+            android:maxLines="1"
+            app:layout_constraintEnd_toStartOf="@+id/expenseValue"
+            app:layout_constraintStart_toEndOf="@+id/expenseName"
+            app:layout_constraintBottom_toBottomOf="@+id/expenseName"
+            app:layout_constraintTop_toTopOf="@+id/expenseName"
+            android:ellipsize="end"
+            tools:text="USDD" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/detailExpenseButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/expenseValue"
+            app:layout_constraintBottom_toBottomOf="@+id/expenseName"
+            app:layout_constraintTop_toTopOf="@+id/expenseName" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
