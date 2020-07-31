@@ -7,5 +7,5 @@ import retrofit2.http.Header
 
 interface API {
     @GET("client")
-    fun getClients(@Header("X-Authorization-Firebase") auth: String) : Call<List<LoggedUser>>
+    fun getClients(@Header("X-Authorization-Firebase") auth: String) : Call<Map<String, Map<String, Any>>>
 }
