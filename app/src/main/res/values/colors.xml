@@ -10,4 +10,8 @@
     <color name="colorBackground3">#648C66</color>
     <color name="colorBackground4">#D9C148</color>
     <color name="colorBackground5">#A63838</color>
+
+    <color name="grey_100">#F5F5F5</color>
+    <color name="grey_300">#E0E0E0</color>
+    <color name="grey_500">#9E9E9E</color>
 </resources>
