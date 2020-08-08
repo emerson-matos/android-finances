@@ -60,7 +60,7 @@ android {
 
             // Facebook Android SDK (only required for Facebook Login)
             // Used in FacebookLoginActivity.
-            implementation 'com.facebook.android:facebook-login:4.42.0'
+            implementation 'com.facebook.android:facebook-login:7.1.0'
             implementation 'androidx.browser:browser:1.2.0'
 
             implementation 'com.google.android.material:material:1.2.0'
