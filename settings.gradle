@@ -1,5 +1,4 @@
 include ':internal:chooserx'
-include ':auth'
 include ':internal:lintchecks'
 include ':internal:lint'
 
