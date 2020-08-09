@@ -1,9 +1,9 @@
 package com.github.emerson.financas.data.repository.expense
 
-import com.github.emerson.financas.data.model.ExpenseData
+import com.github.emerson.financas.data.model.TransactionDTO
 
 interface ExpenseRepository {
-    suspend fun doRequestExpenseList(): List<ExpenseData>
+    suspend fun doRequestExpenseList(): List<TransactionDTO>
 
-    suspend fun doRequestExpense(): ExpenseData
+    suspend fun doRequestExpense(): TransactionDTO
 }

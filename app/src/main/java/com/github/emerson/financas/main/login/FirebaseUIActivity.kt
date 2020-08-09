@@ -9,12 +9,18 @@ import androidx.appcompat.app.AppCompatActivity
 import com.firebase.ui.auth.AuthUI
 import com.github.emerson.financas.BuildConfig
 import com.github.emerson.financas.R
+import com.github.emerson.financas.data.repository.expense.API
 import com.github.emerson.financas.databinding.ActivityFirebaseUiBinding
+import com.github.emerson.financas.infrastructure.RetrofitConfiguration
 import com.github.emerson.financas.main.home.HomeActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.activity_firebase_ui.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 /**
  * Demonstrate authentication using the FirebaseUI-Android library. This activity demonstrates
@@ -50,14 +56,64 @@ class FirebaseUIActivity : AppCompatActivity(), View.OnClickListener {
         if (requestCode == RC_SIGN_IN) {
             if (resultCode == Activity.RESULT_OK) {
                 // Sign in succeeded
-                startActivity(Intent(this, HomeActivity::class.java))
-                finish()
+                progressBar.visibility = View.VISIBLE
+                FinancasSignUp()
             } else {
                 // Sign in failed
                 Toast.makeText(this, "Sign In Failed", Toast.LENGTH_SHORT).show()
                 updateUI(null)
             }
         }
+    }
+
+    private fun FinancasSignUp() {
+        val endpoint = RetrofitConfiguration.getRetrofitInstance().create(API::class.java)
+        FirebaseAuth.getInstance()//
+            .currentUser?.getIdToken(true)//
+            ?.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val idToken = task.result?.token
+                    val callback = idToken?.let { endpoint.signUpUsingPOST(it) }
+                    println("meu token \n$idToken")
+                    callback?.enqueue(object :
+                        Callback<Void?> {
+                        override fun onFailure(
+                            call: Call<Void?>,
+                            t: Throwable
+                        ) {
+                            println("errorrrrrrrrrrrrr")
+                            progressBar.visibility = View.GONE
+                            Toast.makeText(
+                                this@FirebaseUIActivity.baseContext,
+                                t.message,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+
+                        override fun onResponse(
+                            call: Call<Void?>,
+                            response: Response<Void?>
+                        ) {
+                            progressBar.visibility = View.GONE
+                            startActivity(
+                                Intent(
+                                    this@FirebaseUIActivity.baseContext,
+                                    HomeActivity::class.java
+                                )
+                            )
+                            println("Cadastro finalizado com ${response.isSuccessful}")
+                            println("Cadastro finalizado com ${response.code()}")
+                        }
+                    })
+                } else {
+                    Toast.makeText(
+                        this@FirebaseUIActivity.baseContext,
+                        "somenthing when wrong",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    progressBar.visibility = View.GONE
+                }
+            }
     }
 
     private fun startSignIn() {
@@ -75,7 +131,8 @@ class FirebaseUIActivity : AppCompatActivity(), View.OnClickListener {
             .setLogo(R.mipmap.ic_launcher)
             .build()
 
-        startActivityForResult(intent,
+        startActivityForResult(
+            intent,
             RC_SIGN_IN
         )
     }

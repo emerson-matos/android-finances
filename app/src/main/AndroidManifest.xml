@@ -4,6 +4,7 @@
     package="com.github.emerson.financas">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -13,8 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".main.home.HomeActivity" />
-        <activity
-            android:name=".main.login.FirebaseUIActivity" >
+        <activity android:name=".main.login.FirebaseUIActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
