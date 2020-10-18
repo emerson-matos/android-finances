@@ -1,43 +1,38 @@
 language: android
 sudo: required
 jdk: oraclejdk8
-
 env:
   global:
   - ANDROID_API_LEVEL=28
   - ANDROID_BUILD_TOOLS_VERSION=28.0.3
   - ANDROID_ABI=armeabi-v7a
-
 before_install:
-  - touch $HOME/.android/repositories.cfg
-  - yes | sdkmanager "platforms;android-28"
-  - yes | sdkmanager "build-tools;28.0.3"
-
+- openssl aes-256-cbc -K $encrypted_fd8d34b142d0_key -iv $encrypted_fd8d34b142d0_iv
+  -in google-services.json.enc -out app/google-services.json -d
+- touch $HOME/.android/repositories.cfg
+- yes | sdkmanager "platforms;android-28"
+- yes | sdkmanager "build-tools;28.0.3"
 before_cache:
 - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
 - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
-
 cache:
   directories:
-  - $HOME/.gradle/caches/
-  - $HOME/.gradle/wrapper/
-  - $HOME/.android/build-cache
-
+  - "$HOME/.gradle/caches/"
+  - "$HOME/.gradle/wrapper/"
+  - "$HOME/.android/build-cache"
 android:
   components:
-    - tools
-    - platform-tools
-    - tools
-    - extra-android-m2repository
+  - tools
+  - platform-tools
+  - tools
+  - extra-android-m2repository
   licenses:
-    - 'android-sdk-preview-license-52d11cd2'
-    - 'android-sdk-license-.+'
-    - 'google-gdk-license-.+'
-
+  - android-sdk-preview-license-52d11cd2
+  - android-sdk-license-.+
+  - google-gdk-license-.+
 script:
-  - ./gradlew clean build
-  - ./gradlew test
-
+- "./gradlew clean build"
+- "./gradlew test"
 notifications:
   slack:
     secure: Z8bduTFD7/ES4uf1zaHAgOHi45Gj0g+4l/7TQ1rdV4FhInl56AmiVJ7rLAnaJ368xOlvBxzlAPezuW6ouV55XiUF73RQIP1WK7mUxrnLQPV6E6AOGlhAsekA1LClN9qkh3Rom62Ti8hilIelphzgVxfKfYEDtdeFXqlA5gJaHTs+OI0oM6KnBJa8nEBn6+La1kHh3mqt+g1BwMJ2sTk71xPpAdlImr9BfZvED+GxUKjnUAyf28DV6rTn493g3xcRCWQWtnqoonREwFyPuMemnDzl4O9rI0rBBnHtPvTB/hOs7ftm2diYA21LcklABawOkfVGBgEfYTuZOYPftXutUyQ4rtAdXwwKBAciAiSpnuwws7z1OzTUPA2wd5/ijqvYT5V89jcRTtPDbDkn1t+LHBAshXfOjUO/hJWQu2Zb0sNMbEM4GlUN74Jro+3q9MyOynLjrlgIHn7oM3U1muS4SntSVJF4YK02CgMw/8tIlNpNBJhXKPhvLPMJF53nGU+I7tjvglG+12i9yuirGhM+VP7l+Baqz0U391pUh4PYCRAD3cmBrjiJjOLbze3K94sDw9XEKqyO/FSgvCEMJDI+Pm74rXgP0H1+HlY+alojvJVHGgEaisDj6xeRj4isyhMIXWylCvAn+SzXuZe8u0SOG6olw8VECnvLURXWgJF7f9Y=
