@@ -37,6 +37,7 @@ class FirebaseUIActivity : AppCompatActivity(), View.OnClickListener {
 
         binding.signInButton.setOnClickListener(this)
         binding.signOutButton.setOnClickListener(this)
+        binding.continueButton.setOnClickListener(this)
     }
 
     override fun onStart() {
@@ -50,8 +51,7 @@ class FirebaseUIActivity : AppCompatActivity(), View.OnClickListener {
         if (requestCode == RC_SIGN_IN) {
             if (resultCode == Activity.RESULT_OK) {
                 // Sign in succeeded
-                startActivity(Intent(this, HomeActivity::class.java))
-                finish()
+                nextStep()
             } else {
                 // Sign in failed
                 Toast.makeText(this, "Sign In Failed", Toast.LENGTH_SHORT).show()
@@ -96,6 +96,7 @@ class FirebaseUIActivity : AppCompatActivity(), View.OnClickListener {
             binding.signInButton.visibility = View.VISIBLE
             binding.signOutButton.visibility = View.GONE
         }
+        binding.continueButton.visibility = binding.signOutButton.visibility
     }
 
     private fun signOut() {
@@ -107,9 +108,14 @@ class FirebaseUIActivity : AppCompatActivity(), View.OnClickListener {
         when (view.id) {
             R.id.signInButton -> startSignIn()
             R.id.signOutButton -> signOut()
+            R.id.continueButton -> nextStep()
         }
     }
 
+    fun nextStep() {
+        startActivity(Intent(this, HomeActivity::class.java))
+        finish()
+    }
     companion object {
         private const val RC_SIGN_IN = 9001
     }
