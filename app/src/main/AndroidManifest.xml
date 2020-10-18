@@ -21,7 +21,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".main.expense.ExpenseActivity" />
+        <activity android:name=".main.expense.list.ExpenseListActivity" />
+        <activity android:name=".main.expense.detail.ExpenseDetailActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
 
         <!-- Facebook Configuration -->
         <meta-data

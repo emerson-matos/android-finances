@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:contentScrim="?attr/colorPrimary"
+    app:layout_scrollFlags="scroll|exitUntilCollapsed">
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".main.expense.detail.ExpenseDetailActivity">
+
+            <TextView
+                android:id="@+id/expenseDetailId"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:textSize="50sp"
+                android:text="Descrição"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/expenseDetailName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textSize="50sp"
+                app:layout_constraintEnd_toEndOf="@+id/expenseDetailId"
+                app:layout_constraintStart_toStartOf="@+id/expenseDetailId"
+                app:layout_constraintTop_toBottomOf="@+id/expenseDetailId"
+                tools:text="TextView" />
+
+            <TextView
+                android:id="@+id/expenseDetailDescription"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textSize="50sp"
+                app:layout_constraintEnd_toEndOf="@+id/expenseDetailName"
+                app:layout_constraintStart_toStartOf="@+id/expenseDetailName"
+                app:layout_constraintTop_toBottomOf="@+id/expenseDetailName"
+                tools:text="TextView" />
+
+            <TextView
+                android:id="@+id/expenseDetailCard"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textSize="50sp"
+                app:layout_constraintEnd_toEndOf="@+id/expenseDetailAccount"
+                app:layout_constraintStart_toStartOf="@+id/expenseDetailAccount"
+                app:layout_constraintTop_toBottomOf="@+id/expenseDetailAccount"
+                tools:text="TextView" />
+
+            <TextView
+                android:id="@+id/expenseDetailAccount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textSize="50sp"
+                app:layout_constraintEnd_toEndOf="@+id/expenseDetailOwner"
+                app:layout_constraintStart_toStartOf="@+id/expenseDetailOwner"
+                app:layout_constraintTop_toBottomOf="@+id/expenseDetailOwner"
+                tools:text="TextView" />
+
+            <TextView
+                android:id="@+id/expenseDetailOwner"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textSize="50sp"
+                app:layout_constraintEnd_toEndOf="@+id/expenseDetailDescription"
+                app:layout_constraintStart_toStartOf="@+id/expenseDetailDescription"
+                app:layout_constraintTop_toBottomOf="@+id/expenseDetailDescription"
+                tools:text="TextView" />
+
+            <TextView
+                android:id="@+id/expenseDetailDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textSize="50sp"
+                android:ems="10"
+                app:layout_constraintEnd_toEndOf="@+id/expenseDetailCard"
+                app:layout_constraintStart_toStartOf="@+id/expenseDetailCard"
+                app:layout_constraintTop_toBottomOf="@+id/expenseDetailCard" />
+
+            <TextView
+                android:id="@+id/expenseDetailCurrency"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textSize="50sp"
+                app:layout_constraintEnd_toEndOf="@+id/expenseDetailCard"
+                app:layout_constraintStart_toStartOf="@+id/expenseDetailCard"
+                app:layout_constraintTop_toBottomOf="@+id/expenseDetailDate"
+                tools:text="TextView" />
+
+            <TextView
+                android:id="@+id/expenseDetailValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textSize="50sp"
+                app:layout_constraintEnd_toEndOf="@+id/expenseDetailCard"
+                app:layout_constraintStart_toStartOf="@+id/expenseDetailCard"
+                app:layout_constraintTop_toBottomOf="@+id/expenseDetailCurrency"
+                tools:text="TextView" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="192dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleMarginStart="48dp"
+            app:expandedTitleMarginEnd="64dp">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:layout_collapseMode="pin" />
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

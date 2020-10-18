@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.github.emerson.financas.R
@@ -23,7 +23,7 @@ class ExpenseListFragment : Fragment() {
             ExpenseListFragment()
     }
 
-    private lateinit var viewModel: ExpenseViewModel
+    private val listViewModel: ExpenseListViewModel by viewModels()
     private lateinit var adapter: ExpenseAdapter
 
     override fun onCreateView(
@@ -35,8 +35,8 @@ class ExpenseListFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(ExpenseViewModel::class.java)
-        adapter = ExpenseAdapter(viewModel)
+//        viewModel = ViewModelProviders.of(this).get(ExpenseViewModel::class.java)
+        adapter = ExpenseAdapter(listViewModel, requireActivity())
         expenseList.apply {
             adapter = this@ExpenseListFragment.adapter
             layoutManager = LinearLayoutManager(context)
@@ -49,7 +49,7 @@ class ExpenseListFragment : Fragment() {
         }
 
         expenseSwipeRefreshLayout.setOnRefreshListener {
-            viewModel.fetchMoreData()
+            listViewModel.fetchMoreData()
         }
 
         addExpenseButton.setOnClickListener {
@@ -61,14 +61,14 @@ class ExpenseListFragment : Fragment() {
 
 
     private fun configureViewModel() {
-        viewModel.loading.observe(viewLifecycleOwner, Observer {
+        listViewModel.loading.observe(viewLifecycleOwner, Observer {
             it?.let {
                 println("LOADING VALUE $it")
                 expenseSwipeRefreshLayout.isRefreshing = it
             }
         })
 
-        viewModel.states.observe(viewLifecycleOwner, Observer {
+        listViewModel.states.observe(viewLifecycleOwner, Observer {
             it?.let {
                 println("list size ${it.size} in ${System.currentTimeMillis()}")
                 this.adapter.updateData(it)

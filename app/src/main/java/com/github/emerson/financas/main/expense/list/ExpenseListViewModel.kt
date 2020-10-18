@@ -9,7 +9,7 @@ import com.github.emerson.financas.data.model.ExpenseData
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class ExpenseViewModel : ViewModel() {
+class ExpenseListViewModel : ViewModel() {
     private val _states = MutableLiveData<List<ExpenseData>>()
     val states: LiveData<List<ExpenseData>>
         get() = _states

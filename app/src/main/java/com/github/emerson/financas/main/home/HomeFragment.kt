@@ -7,11 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.fragment.app.viewModels
 import com.github.emerson.financas.R
 import com.github.emerson.financas.data.repository.expense.API
 import com.github.emerson.financas.infrastructure.RetrofitConfiguration
-import com.github.emerson.financas.main.expense.ExpenseActivity
+import com.github.emerson.financas.main.expense.list.ExpenseListActivity
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.main_fragment.*
 import retrofit2.Call
@@ -24,7 +24,7 @@ class HomeFragment : Fragment() {
         fun newInstance() = HomeFragment()
     }
 
-    private lateinit var viewModel: HomeViewModel
+    private val viewModel: HomeViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,10 +35,10 @@ class HomeFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
+//        viewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
         // TODO: Use the ViewModel
         welcomeCard.setOnClickListener {
-            val intent = Intent(this.context, ExpenseActivity::class.java)
+            val intent = Intent(this.context, ExpenseListActivity::class.java)
             startActivity(intent)
             activity?.overridePendingTransition(
                 R.anim.screen_enter_from_right,
@@ -80,7 +80,7 @@ class HomeFragment : Fragment() {
                         ) {
                             (response.body()?.get("_embedded")
                                 ?.get("clientDTOList") as List<Map<String, Any>>).forEach {
-                                textView.text.appendln("${it["name"]}\n")
+                                textView.text.appendLine("${it["name"]}\n")
                             }
                             println(response.body()?.get("_embedded")?.get("clientDTOList"))
                         }

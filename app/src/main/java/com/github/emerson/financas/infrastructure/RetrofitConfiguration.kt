@@ -9,7 +9,7 @@ class RetrofitConfiguration {
 
     companion object {
 
-        private val PATH = "https://www.memerson.tk/api/"
+        private val PATH = "http://192.168.0.110:8080/api/"
         private val retrofit = Retrofit.Builder()
             .baseUrl(PATH)
             .addConverterFactory(GsonConverterFactory.create(GsonBuilder().excludeFieldsWithoutExposeAnnotation().create()))
