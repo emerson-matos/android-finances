@@ -5,6 +5,15 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 28
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
     defaultConfig {
         applicationId "com.github.emerson.financas"
         minSdkVersion 21
@@ -33,7 +42,7 @@ android {
 
             implementation 'androidx.appcompat:appcompat:1.2.0'
             implementation 'androidx.core:core-ktx:1.3.1'
-            implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+            implementation 'androidx.constraintlayout:constraintlayout:2.0.2'
             implementation 'androidx.cardview:cardview:1.0.0'
             implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
             implementation 'androidx.multidex:multidex:2.0.1'
@@ -56,18 +65,18 @@ android {
 
             // Firebase UI
             // Used in FirebaseUIActivity.
-            implementation 'com.firebaseui:firebase-ui-auth:6.2.1'
+            implementation 'com.firebaseui:firebase-ui-auth:6.3.0'
 
             // Facebook Android SDK (only required for Facebook Login)
             // Used in FacebookLoginActivity.
-            implementation 'com.facebook.android:facebook-login:4.42.0'
+            implementation 'com.facebook.android:facebook-login:7.1.0'
             implementation 'androidx.browser:browser:1.2.0'
 
             implementation 'com.google.android.material:material:1.2.0'
             implementation 'com.google.code.gson:gson:2.8.6'
             implementation 'com.google.firebase:firebase-auth:19.3.2'
-            implementation 'com.squareup.retrofit2:retrofit:2.5.0'
-            implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+            implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+            implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
 
             testImplementation 'junit:junit:4.13'
