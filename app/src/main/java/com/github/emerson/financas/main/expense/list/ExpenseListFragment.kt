@@ -35,7 +35,6 @@ class ExpenseListFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-//        viewModel = ViewModelProviders.of(this).get(ExpenseViewModel::class.java)
         adapter = ExpenseAdapter(listViewModel, requireActivity())
         expenseList.apply {
             adapter = this@ExpenseListFragment.adapter
@@ -61,14 +60,14 @@ class ExpenseListFragment : Fragment() {
 
 
     private fun configureViewModel() {
-        listViewModel.loading.observe(viewLifecycleOwner, Observer {
+        listViewModel.loading.observe(viewLifecycleOwner, {
             it?.let {
                 println("LOADING VALUE $it")
                 expenseSwipeRefreshLayout.isRefreshing = it
             }
         })
 
-        listViewModel.states.observe(viewLifecycleOwner, Observer {
+        listViewModel.states.observe(viewLifecycleOwner, {
             it?.let {
                 println("list size ${it.size} in ${System.currentTimeMillis()}")
                 this.adapter.updateData(it)

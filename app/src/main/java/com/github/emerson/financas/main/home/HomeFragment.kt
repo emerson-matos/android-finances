@@ -35,7 +35,6 @@ class HomeFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-//        viewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
         // TODO: Use the ViewModel
         welcomeCard.setOnClickListener {
             val intent = Intent(this.context, ExpenseListActivity::class.java)

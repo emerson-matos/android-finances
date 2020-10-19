@@ -21,8 +21,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".main.expense.list.ExpenseListActivity" />
+        <activity android:name=".main.expense.list.ExpenseListActivity"
+            android:parentActivityName=".main.home.HomeActivity" />
         <activity android:name=".main.expense.detail.ExpenseDetailActivity"
+            android:parentActivityName=".main.expense.list.ExpenseListActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
 
         <!-- Facebook Configuration -->

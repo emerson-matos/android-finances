@@ -21,13 +21,4 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    //Your Slide animation
-//    fun setAnimation() {
-//        val slide = Slide()
-//        slide.slideEdge = Gravity.LEFT
-//        slide.duration = 400
-//        slide.interpolator = DecelerateInterpolator()
-//        window.exitTransition = slide
-//        window.enterTransition = slide
-//    }
 }

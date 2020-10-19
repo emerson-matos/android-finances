@@ -1,6 +1,5 @@
 package com.github.emerson.financas.main.expense.detail
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -30,8 +29,10 @@ class ExpenseDetailFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-//        viewModel = ViewModelProviders.of(this).get(ExpenseDetailViewModel::class.java)
         val item: ExpenseData? = (activity?.intent?.extras?.get("item") as Bundle).get("item") as ExpenseData?
+        (requireActivity() as AppCompatActivity).setSupportActionBar(toolbar)
+        (requireActivity() as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        (requireActivity() as AppCompatActivity).supportActionBar?.setDisplayShowHomeEnabled(true)
         item?.let {
             expenseDetailName.text = item.name
             expenseDetailId.text= item.id.toString()
@@ -46,19 +47,6 @@ class ExpenseDetailFragment : Fragment() {
         collapsing_toolbar.title = item?.name ?: "123123"
         configureViewModel()
     }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        (activity as AppCompatActivity).setSupportActionBar(toolbar)
-        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        (activity as AppCompatActivity).supportActionBar?.setDisplayShowHomeEnabled(true)
-    }
-//
-//    override fun onStart() {
-//        super.onStart()
-//        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
-//        (activity as AppCompatActivity).supportActionBar?.setDisplayShowHomeEnabled(true)
-//    }
 
     private fun configureViewModel() {
     }
