@@ -35,7 +35,6 @@ class HomeFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        // TODO: Use the ViewModel
         welcomeCard.setOnClickListener {
             val intent = Intent(this.context, ExpenseListActivity::class.java)
             startActivity(intent)
@@ -44,54 +43,18 @@ class HomeFragment : Fragment() {
                 R.anim.screen_exit_from_left
             )
         }
-        val endpoint = RetrofitConfiguration.getRetrofitInstance().create(API::class.java)
-        fetchData(endpoint)
-
-
+        viewModel.loadToken()
+        configureViewModel()
     }
 
-    private fun fetchData(endpoint: API) {
-        FirebaseAuth.getInstance()//
-            .currentUser?.getIdToken(true)//
-            ?.addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    val idToken = task.result?.token
-                    val callback = idToken?.let { endpoint.getClients(it) }
-                    println("meu token \n$idToken")
-                    textView.text.append("$idToken\n")
-                    callback?.enqueue(object :
-                        Callback<Map<String, Map<String, Any>>> {
-                        override fun onFailure(
-                            call: Call<Map<String, Map<String, Any>>>,
-                            t: Throwable
-                        ) {
-                            println("errorrrrrrrrrrrrr")
-                            Toast.makeText(
-                                this@HomeFragment.activity?.baseContext,
-                                t.message,
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
+    private fun configureViewModel() {
+        viewModel.token.observe(viewLifecycleOwner, {
+            textView.text.appendLine(it)
+        })
 
-                        override fun onResponse(
-                            call: Call<Map<String, Map<String, Any>>>,
-                            response: Response<Map<String, Map<String, Any>>>
-                        ) {
-                            (response.body()?.get("_embedded")
-                                ?.get("clientDTOList") as List<Map<String, Any>>).forEach {
-                                textView.text.appendLine("${it["name"]}\n")
-                            }
-                            println(response.body()?.get("_embedded")?.get("clientDTOList"))
-                        }
-                    })
-                } else {
-                    Toast.makeText(
-                        this@HomeFragment.activity?.baseContext,
-                        "somenthing when wrong",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
+        viewModel.error.observe(viewLifecycleOwner, {
+            textView.text.clear()
+        })
     }
 
 }
