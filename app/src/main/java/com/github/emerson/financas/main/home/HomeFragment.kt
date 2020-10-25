@@ -14,9 +14,7 @@ import com.github.emerson.financas.infrastructure.RetrofitConfiguration
 import com.github.emerson.financas.main.expense.list.ExpenseListActivity
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.main_fragment.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import kotlinx.android.synthetic.main.welcome_card.view.*
 
 class HomeFragment : Fragment() {
 
@@ -43,6 +41,7 @@ class HomeFragment : Fragment() {
                 R.anim.screen_exit_from_left
             )
         }
+        welcomeCard.title.text = getString(R.string.welcome_user, FirebaseAuth.getInstance().currentUser?.displayName)
         viewModel.loadToken()
         configureViewModel()
     }

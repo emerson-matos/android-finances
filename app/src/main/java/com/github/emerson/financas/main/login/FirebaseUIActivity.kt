@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.firebase.ui.auth.AuthUI
 import com.github.emerson.financas.BuildConfig
@@ -24,6 +25,7 @@ import com.google.firebase.ktx.Firebase
  */
 class FirebaseUIActivity : AppCompatActivity(), View.OnClickListener {
 
+    private val viewModel: LoginViewModel by viewModels()
     private lateinit var auth: FirebaseAuth
     private lateinit var binding: ActivityFirebaseUiBinding
 
@@ -51,6 +53,7 @@ class FirebaseUIActivity : AppCompatActivity(), View.OnClickListener {
         if (requestCode == RC_SIGN_IN) {
             if (resultCode == Activity.RESULT_OK) {
                 // Sign in succeeded
+                checkUserStatus()
                 nextStep()
             } else {
                 // Sign in failed
@@ -58,6 +61,10 @@ class FirebaseUIActivity : AppCompatActivity(), View.OnClickListener {
                 updateUI(null)
             }
         }
+    }
+
+    private fun checkUserStatus() {
+        viewModel.registerUser()
     }
 
     private fun startSignIn() {
