@@ -2,12 +2,12 @@ package com.github.emerson.financas.adapter
 
 import android.app.Activity
 import android.content.Intent
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
+import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.github.emerson.financas.R
@@ -54,8 +54,7 @@ class ExpenseAdapter(private val listViewModel: ExpenseListViewModel, private va
                 setOnClickListener {
                     Toast.makeText(this.context, "expense detail", Toast.LENGTH_LONG).show()
                     val intent = Intent(this.context, ExpenseDetailActivity::class.java)
-                    val bundle = Bundle()
-                    bundle.putLong("item", item.id)
+                    val bundle = bundleOf("item" to item.id)
                     intent.putExtra("item", bundle)
                     startActivity(context, intent, bundle)
                     activity.overridePendingTransition(
