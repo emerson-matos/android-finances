@@ -55,7 +55,7 @@ class ExpenseAdapter(private val listViewModel: ExpenseListViewModel, private va
                     Toast.makeText(this.context, "expense detail", Toast.LENGTH_LONG).show()
                     val intent = Intent(this.context, ExpenseDetailActivity::class.java)
                     val bundle = Bundle()
-                    bundle.putParcelable("item", item)
+                    bundle.putLong("item", item.id)
                     intent.putExtra("item", bundle)
                     startActivity(context, intent, bundle)
                     activity.overridePendingTransition(

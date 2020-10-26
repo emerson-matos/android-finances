@@ -5,12 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.github.emerson.financas.R
-import com.github.emerson.financas.data.repository.expense.API
-import com.github.emerson.financas.infrastructure.RetrofitConfiguration
 import com.github.emerson.financas.main.expense.list.ExpenseListActivity
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.main_fragment.*
