@@ -9,4 +9,7 @@
     <dimen name="field_width_standard">160dp</dimen>
 
     <dimen name="button_horizontal_margin">8dp</dimen>
+
+    <dimen name="primaryText">24sp</dimen>
+    <dimen name="secondaryText">16sp</dimen>
 </resources>

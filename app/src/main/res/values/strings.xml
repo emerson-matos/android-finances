@@ -102,6 +102,15 @@
 
     <string name="error_sign_in_failed">Sign in failed, see logs for details.</string>
     <string name="multi_factor_signed_out">You are not signed in. To use this sample, first navigate to the Email/Password example to sign in and then return here to enroll in multi-factor auth.</string>
-    <string name="welcome_user">Welcome, user</string>
+
+    <string name="welcome_user">Welcome, %s</string>
+
+    <string name="expense_detail">Expense Detail</string>
+    <string name="spent">Spent</string>
+    <string name="card">Card</string>
+    <string name="account">Account</string>
+    <string name="date">Date</string>
+    <string name="owner">Owner</string>
+    <string name="description">Description</string>
 
 </resources>

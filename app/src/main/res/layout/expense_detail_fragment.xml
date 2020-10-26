@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:contentScrim="?attr/colorPrimary"
+    app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".main.expense.detail.ExpenseDetailActivity">
+
+            <TextView
+                android:id="@+id/expenseDetailDescriptionLabel"
+                style="@style/secondaryTextLabel"
+                android:layout_margin="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:text="@string/description" />
+
+            <TextView
+                android:id="@+id/expenseDetailDescription"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textSize="@dimen/primaryText"
+                app:layout_constraintEnd_toEndOf="@+id/expenseDetailDescriptionLabel"
+                app:layout_constraintStart_toStartOf="@+id/expenseDetailDescriptionLabel"
+                app:layout_constraintTop_toBottomOf="@+id/expenseDetailDescriptionLabel"
+                tools:text="Description" />
+
+            <TextView
+                android:id="@+id/expenseDetailCardLabel"
+                style="@style/secondaryTextLabel"
+                app:layout_constraintEnd_toEndOf="@+id/expenseDetailDescriptionLabel"
+                app:layout_constraintStart_toStartOf="@+id/expenseDetailDescriptionLabel"
+                app:layout_constraintTop_toBottomOf="@+id/expenseDetailDescription"
+                android:text="@string/card" />
+
+            <TextView
+                android:id="@+id/expenseDetailCard"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textSize="@dimen/primaryText"
+                app:layout_constraintEnd_toEndOf="@+id/expenseDetailDescriptionLabel"
+                app:layout_constraintStart_toStartOf="@+id/expenseDetailDescriptionLabel"
+                app:layout_constraintTop_toBottomOf="@+id/expenseDetailCardLabel"
+                tools:text="My Card" />
+
+            <TextView
+                android:id="@+id/expenseDetailAccountLabel"
+                style="@style/secondaryTextLabel"
+                app:layout_constraintEnd_toEndOf="@+id/expenseDetailDescriptionLabel"
+                app:layout_constraintStart_toStartOf="@+id/expenseDetailDescriptionLabel"
+                app:layout_constraintTop_toBottomOf="@+id/expenseDetailCard"
+                android:text="@string/account" />
+
+            <TextView
+                android:id="@+id/expenseDetailAccount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textSize="@dimen/primaryText"
+                app:layout_constraintEnd_toEndOf="@+id/expenseDetailDescriptionLabel"
+                app:layout_constraintStart_toStartOf="@+id/expenseDetailDescriptionLabel"
+                app:layout_constraintTop_toBottomOf="@+id/expenseDetailAccountLabel"
+                tools:text="Account" />
+
+            <TextView
+                android:id="@+id/expenseDetailOwnerLabel"
+                style="@style/secondaryTextLabel"
+                app:layout_constraintEnd_toEndOf="@+id/expenseDetailDescriptionLabel"
+                app:layout_constraintStart_toStartOf="@+id/expenseDetailDescriptionLabel"
+                app:layout_constraintTop_toBottomOf="@+id/expenseDetailAccount"
+                android:text="@string/owner" />
+
+            <TextView
+                android:id="@+id/expenseDetailOwner"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textSize="@dimen/primaryText"
+                app:layout_constraintEnd_toEndOf="@+id/expenseDetailDescriptionLabel"
+                app:layout_constraintStart_toStartOf="@+id/expenseDetailDescriptionLabel"
+                app:layout_constraintTop_toBottomOf="@+id/expenseDetailOwnerLabel"
+                tools:text="Owner" />
+
+            <TextView
+                android:id="@+id/expenseDetailDateLabel"
+                style="@style/secondaryTextLabel"
+                app:layout_constraintEnd_toEndOf="@+id/expenseDetailDescriptionLabel"
+                app:layout_constraintStart_toStartOf="@+id/expenseDetailDescriptionLabel"
+                app:layout_constraintTop_toBottomOf="@+id/expenseDetailOwner"
+                android:text="@string/date" />
+
+            <TextView
+                android:id="@+id/expenseDetailDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:ems="10"
+                android:textSize="@dimen/primaryText"
+                app:layout_constraintEnd_toEndOf="@+id/expenseDetailDescriptionLabel"
+                app:layout_constraintStart_toStartOf="@+id/expenseDetailDescriptionLabel"
+                app:layout_constraintTop_toBottomOf="@+id/expenseDetailDateLabel"
+                tools:text="20/10/2020"/>
+
+            <TextView
+                android:id="@+id/expenseDetailValueLabel"
+                style="@style/secondaryTextLabel"
+                app:layout_constraintEnd_toEndOf="@+id/expenseDetailDescriptionLabel"
+                app:layout_constraintStart_toStartOf="@+id/expenseDetailDescriptionLabel"
+                app:layout_constraintTop_toBottomOf="@+id/expenseDetailDate"
+                android:text="@string/spent" />
+
+            <TextView
+                android:id="@+id/expenseDetailCurrency"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:textSize="@dimen/primaryText"
+                android:layout_marginStart="8dp"
+                app:layout_constraintHorizontal_weight=".3"
+                app:layout_constraintEnd_toEndOf="@+id/expenseDetailDescriptionLabel"
+                app:layout_constraintStart_toEndOf="@+id/expenseDetailValue"
+                app:layout_constraintTop_toTopOf="@+id/expenseDetailValue"
+                app:layout_constraintBottom_toBottomOf="@+id/expenseDetailValue"
+                tools:text="Currency" />
+
+            <TextView
+                android:id="@+id/expenseDetailValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/primaryText"
+                android:layout_marginTop="8dp"
+                app:layout_constraintHorizontal_weight=".7"
+                app:layout_constraintEnd_toStartOf="@+id/expenseDetailCurrency"
+                app:layout_constraintStart_toStartOf="@+id/expenseDetailDescriptionLabel"
+                app:layout_constraintTop_toBottomOf="@+id/expenseDetailValueLabel"
+                tools:text="Value" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="192dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
