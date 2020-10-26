@@ -1,6 +1,2 @@
-include ':internal:chooserx'
-include ':internal:lintchecks'
-include ':internal:lint'
-
 include ':app'
 rootProject.name='financas'

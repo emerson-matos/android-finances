@@ -15,8 +15,8 @@ class RetrofitConfiguration {
             .addConverterFactory(GsonConverterFactory.create(GsonBuilder().excludeFieldsWithoutExposeAnnotation().create()))
             .build()
 
-        /** Retorna uma Instância do Client Retrofit para Requisições
-         *
+        /**
+         * Retorna uma Instância do Client Retrofit para Requisições
          */
         fun getRetrofitInstance(): Retrofit {
             return retrofit
