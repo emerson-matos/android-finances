@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel(private val firebase: FirebaseAuth) : ViewModel() {
 
     private val _token = MutableLiveData<String>()
     val token: LiveData<String>
@@ -16,7 +16,7 @@ class HomeViewModel : ViewModel() {
         get() = _error
 
     fun loadToken() {
-        FirebaseAuth.getInstance()//
+        firebase//
             .currentUser?.getIdToken(true)//
             ?.addOnCompleteListener { task ->
                 if (!task.isSuccessful) {

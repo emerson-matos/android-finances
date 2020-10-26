@@ -15,7 +15,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ExpenseListViewModel : ViewModel() {
+class ExpenseListViewModel(private val expenseBusiness: ExpenseBusiness) : ViewModel() {
 
     private val endpoint = RetrofitConfiguration.getRetrofitInstance().create(API::class.java)
 
@@ -42,8 +42,6 @@ class ExpenseListViewModel : ViewModel() {
             }
         }
     }
-
-    private val expenseBusiness = ExpenseBusiness()
 
     fun fetchData() {
 

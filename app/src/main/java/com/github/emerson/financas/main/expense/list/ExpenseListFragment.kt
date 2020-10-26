@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.github.emerson.financas.R
@@ -14,6 +13,7 @@ import com.github.emerson.financas.adapter.EndlessRecyclerViewScrollListener
 import com.github.emerson.financas.adapter.ExpenseAdapter
 import kotlinx.android.synthetic.main.expense_list.*
 import kotlinx.android.synthetic.main.expense_list_fragment.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ExpenseListFragment : Fragment() {
 
@@ -22,7 +22,7 @@ class ExpenseListFragment : Fragment() {
             ExpenseListFragment()
     }
 
-    private val listViewModel: ExpenseListViewModel by viewModels()
+    private val listViewModel: ExpenseListViewModel by viewModel()
     private lateinit var adapter: ExpenseAdapter
 
     override fun onCreateView(
