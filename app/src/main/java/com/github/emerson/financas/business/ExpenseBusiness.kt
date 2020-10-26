@@ -4,7 +4,7 @@ import com.github.emerson.financas.data.model.ExpenseData
 import com.github.emerson.financas.data.repository.expense.ExpenseRepository
 import com.github.emerson.financas.data.repository.expense.ExpenseRepositoryImpl
 
-class ExpenseBusiness(private val expenseRespository: ExpenseRepository = ExpenseRepositoryImpl()) {
+class ExpenseBusiness(private val expenseRespository: ExpenseRepository) {
 
     suspend fun fetchExpenseList(): List<ExpenseData> = expenseRespository.doRequestExpenseList()
 
