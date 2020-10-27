@@ -13,10 +13,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.github.emerson.financas.R
 import com.github.emerson.financas.data.model.ExpenseData
 import com.github.emerson.financas.main.expense.detail.ExpenseDetailActivity
-import com.github.emerson.financas.main.expense.list.ExpenseListViewModel
 import kotlinx.android.synthetic.main.item_list_expense.view.*
 
-class ExpenseAdapter(private val listViewModel: ExpenseListViewModel, private val activity: Activity) :
+class ExpenseAdapter(private val activity: Activity) :
     ListAdapter<ExpenseData, ExpenseAdapter.ExpenseViewHolder>(ExpenseDiffCallback()) {
 
 
@@ -38,10 +37,6 @@ class ExpenseAdapter(private val listViewModel: ExpenseListViewModel, private va
             submitList(it)
         }
         return
-    }
-
-    fun addMore() {
-        listViewModel.fetchMoreData()
     }
 
     class ExpenseViewHolder(private val view: View): RecyclerView.ViewHolder(view) {

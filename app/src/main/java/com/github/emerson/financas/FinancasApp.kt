@@ -1,9 +1,8 @@
 package com.github.emerson.financas
 
 import android.app.Application
-import com.github.emerson.financas.di.applicationModule
-import com.github.emerson.financas.di.repositoryModule
-import com.github.emerson.financas.di.viewModelModule
+import com.github.emerson.financas.di.*
+import com.github.emerson.financas.di.businessModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -16,7 +15,7 @@ class FinancasApp : Application() {
             androidLogger(Level.DEBUG)
             androidContext(this@FinancasApp)
             modules(
-                listOf(applicationModule, viewModelModule, repositoryModule)
+                listOf(applicationModule, apiModule, roomModule, businessModule, viewModelModule, repositoryModule)
             )
         }
     }

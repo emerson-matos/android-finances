@@ -4,10 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.github.emerson.financas.business.AuthBusiness
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.launch
 
-class HomeViewModel(private val firebase: FirebaseAuth) : ViewModel() {
+class HomeViewModel(private val auth: AuthBusiness) :
+    ViewModel() {
 
     private val _token = MutableLiveData<String>()
     val token: LiveData<String>
@@ -19,16 +21,7 @@ class HomeViewModel(private val firebase: FirebaseAuth) : ViewModel() {
 
     fun loadToken() {
         viewModelScope.launch {
-            firebase//
-                .currentUser?.getIdToken(true)//
-                ?.addOnCompleteListener { task ->
-                    if (!task.isSuccessful) {
-                        _error.value = true
-                    } else {
-                        val idToken = task.result?.token
-                        _token.value = idToken
-                    }
-                }
+            _token.value = auth.getUserIdToken()
         }
     }
 }

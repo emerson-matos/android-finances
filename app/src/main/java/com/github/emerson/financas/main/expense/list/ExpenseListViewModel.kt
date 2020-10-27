@@ -4,20 +4,19 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.github.emerson.financas.business.AuthBusiness
 import com.github.emerson.financas.business.ExpenseBusiness
 import com.github.emerson.financas.data.model.ExpenseData
-import com.github.emerson.financas.data.repository.expense.API
-import com.github.emerson.financas.infrastructure.RetrofitConfiguration
-import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import kotlin.coroutines.CoroutineContext
+import kotlin.coroutines.EmptyCoroutineContext
 
-class ExpenseListViewModel(private val expenseBusiness: ExpenseBusiness) : ViewModel() {
-
-    private val endpoint = RetrofitConfiguration.getRetrofitInstance().create(API::class.java)
+class ExpenseListViewModel(
+    private val expenseBusiness: ExpenseBusiness
+) : ViewModel() {
 
     private val _states = MutableLiveData<List<ExpenseData>>()
     val states: LiveData<List<ExpenseData>>
@@ -27,90 +26,66 @@ class ExpenseListViewModel(private val expenseBusiness: ExpenseBusiness) : ViewM
     val loading: LiveData<Boolean>
         get() = _loading
 
+    private val _snackBar = MutableLiveData<Boolean>()
+    val snackbar: LiveData<Boolean>
+        get() = _snackBar
+
     init {
-        viewModelScope.launch {
-            try {
-                _loading.postValue(true)
-                print("INIT")
-                delay(1000)
-                print("REAL INIT")
-                _states.postValue(expenseBusiness.fetchExpenseList())
-            } catch (e: Exception) {
-                println(e.message)
-            } finally {
-                _loading.postValue(false)
-            }
+        launchDataLoad(Dispatchers.IO) {
+            print("INIT")
+            delay(1000)
+            print("REAL INIT")
+            val fetchExpenseList = expenseBusiness.fetchExpenseList()
+            _states.postValue(fetchExpenseList)
         }
     }
 
     fun fetchData() {
-        viewModelScope.launch {
-            try {
-                _loading.postValue(true)
-                print("REAL fetchData")
-                delay(5000)
-                print("REAL fetchData")
-                _states.postValue(expenseBusiness.fetchExpenseList())
-            } catch (e: Exception) {
-                println(e.message)
-            } finally {
-                _loading.postValue(false)
-            }
+        launchDataLoad(Dispatchers.IO) {
+            print("REAL fetchData")
+            delay(5000)
+            print("REAL fetchData")
+            _states.postValue(expenseBusiness.fetchExpenseList())
         }
     }
 
     fun fetchMoreData() {
-        viewModelScope.launch {
+        launchDataLoad {
+            val initialTime = System.currentTimeMillis()
+            println("REAL fetchMoreData beginning $initialTime")
+            delay(5000)
+            println("REAL fetchMoreData ending ${System.currentTimeMillis()} after ${System.currentTimeMillis() - initialTime}")
+            val newValue: MutableList<ExpenseData> = mutableListOf(expenseBusiness.fetchExpense())
+            _states.value?.let { newValue.addAll(it) }
+            _states.postValue(newValue.toList())
+        }
+    }
+
+    private fun launchDataLoad(
+        context: CoroutineContext = EmptyCoroutineContext,
+        block: suspend () -> Unit
+    ): Job {
+        return viewModelScope.launch(context) {
             try {
                 _loading.postValue(true)
-                print("REAL fetchMoreData beginning ${System.currentTimeMillis()}")
-                delay(5000)
-                print("REAL fetchMoreData ending ${System.currentTimeMillis()}")
-                val newValue: MutableList<ExpenseData> =
-                    mutableListOf(expenseBusiness.fetchExpense())
-                _states.value?.let { newValue.addAll(it) }
-                _states.postValue(newValue.toList())
-            } catch (e: Exception) {
-                println(e.message)
+                block()
+            } catch (error: Throwable) {
+                _snackBar.postValue(true)
             } finally {
                 _loading.postValue(false)
             }
         }
     }
 
-    fun loadData() {
-        viewModelScope.launch {
-            FirebaseAuth.getInstance()//
-                .currentUser?.getIdToken(true)?.addOnCompleteListener { task ->
-                    if (!task.isSuccessful) {
-                        println("ERROR")
-//                    _error.value = true
-                    } else {
-                        val idToken = task.result?.token
-//                    _token.value = idToken
-                        idToken?.let {
-                            val callback = endpoint.getClients(it)
-                            callback.enqueue(object :
-                                Callback<Map<String, Map<String, Any>>> {
-                                override fun onFailure(
-                                    call: Call<Map<String, Map<String, Any>>>,
-                                    t: Throwable
-                                ) {
-                                    println("error")
-//                            _error.value = true
-                                }
-
-                                override fun onResponse(
-                                    call: Call<Map<String, Map<String, Any>>>,
-                                    response: Response<Map<String, Map<String, Any>>>
-                                ) {
-//                            _error.value = false
-                                    println(response.body()?.get("_embedded")?.get("clientDTOList"))
-                                }
-                            })
-                        }
-                    }
-                }
+    fun save() {
+        launchDataLoad(Dispatchers.IO) {
+            _states.value?.map {
+                expenseBusiness.save(it)
+            }
         }
+    }
+
+    fun showSnackbar() {
+        _snackBar.postValue(false)
     }
 }

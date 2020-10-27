@@ -14,7 +14,6 @@ class RetrofitConfiguration {
             .baseUrl(PATH)
             .addConverterFactory(GsonConverterFactory.create(GsonBuilder().excludeFieldsWithoutExposeAnnotation().create()))
             .build()
-
         /**
          * Retorna uma Instância do Client Retrofit para Requisições
          */

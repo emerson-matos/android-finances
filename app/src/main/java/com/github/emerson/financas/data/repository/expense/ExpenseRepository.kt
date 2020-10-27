@@ -6,4 +6,6 @@ interface ExpenseRepository {
     suspend fun doRequestExpenseList(): List<ExpenseData>
 
     suspend fun doRequestExpense(): ExpenseData
+
+    suspend fun doCreateExpense(expense: ExpenseData)
 }

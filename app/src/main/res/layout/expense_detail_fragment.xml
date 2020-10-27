@@ -16,12 +16,12 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="16dp"
             tools:context=".main.expense.detail.ExpenseDetailActivity">
 
             <TextView
                 android:id="@+id/expenseDetailDescriptionLabel"
                 style="@style/secondaryTextLabel"
-                android:layout_margin="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

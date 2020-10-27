@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
  * Demonstrate authentication using the FirebaseUI-Android library. This activity demonstrates
@@ -25,7 +26,7 @@ import com.google.firebase.ktx.Firebase
  */
 class FirebaseUIActivity : AppCompatActivity(), View.OnClickListener {
 
-    private val viewModel: LoginViewModel by viewModels()
+    private val viewModel: LoginViewModel by viewModel()
     private lateinit var auth: FirebaseAuth
     private lateinit var binding: ActivityFirebaseUiBinding
 
