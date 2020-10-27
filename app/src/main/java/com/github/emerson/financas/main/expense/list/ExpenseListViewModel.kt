@@ -29,8 +29,8 @@ class ExpenseListViewModel(private val expenseBusiness: ExpenseBusiness) : ViewM
 
     init {
         viewModelScope.launch {
-            _loading.postValue(true)
             try {
+                _loading.postValue(true)
                 print("INIT")
                 delay(1000)
                 print("REAL INIT")
@@ -44,11 +44,9 @@ class ExpenseListViewModel(private val expenseBusiness: ExpenseBusiness) : ViewM
     }
 
     fun fetchData() {
-
-        _loading.postValue(true)
-
         viewModelScope.launch {
             try {
+                _loading.postValue(true)
                 print("REAL fetchData")
                 delay(5000)
                 print("REAL fetchData")
@@ -62,9 +60,9 @@ class ExpenseListViewModel(private val expenseBusiness: ExpenseBusiness) : ViewM
     }
 
     fun fetchMoreData() {
-        _loading.postValue(true)
         viewModelScope.launch {
             try {
+                _loading.postValue(true)
                 print("REAL fetchMoreData beginning ${System.currentTimeMillis()}")
                 delay(5000)
                 print("REAL fetchMoreData ending ${System.currentTimeMillis()}")
@@ -81,36 +79,38 @@ class ExpenseListViewModel(private val expenseBusiness: ExpenseBusiness) : ViewM
     }
 
     fun loadData() {
-        FirebaseAuth.getInstance()//
-            .currentUser?.getIdToken(true)?.addOnCompleteListener { task ->
-                if (!task.isSuccessful) {
-                    println("ERROR")
+        viewModelScope.launch {
+            FirebaseAuth.getInstance()//
+                .currentUser?.getIdToken(true)?.addOnCompleteListener { task ->
+                    if (!task.isSuccessful) {
+                        println("ERROR")
 //                    _error.value = true
-                } else {
-                    val idToken = task.result?.token
+                    } else {
+                        val idToken = task.result?.token
 //                    _token.value = idToken
-                    idToken?.let {
-                        val callback = endpoint.getClients(it)
-                        callback.enqueue(object :
-                            Callback<Map<String, Map<String, Any>>> {
-                            override fun onFailure(
-                                call: Call<Map<String, Map<String, Any>>>,
-                                t: Throwable
-                            ) {
-                                println("error")
+                        idToken?.let {
+                            val callback = endpoint.getClients(it)
+                            callback.enqueue(object :
+                                Callback<Map<String, Map<String, Any>>> {
+                                override fun onFailure(
+                                    call: Call<Map<String, Map<String, Any>>>,
+                                    t: Throwable
+                                ) {
+                                    println("error")
 //                            _error.value = true
-                            }
+                                }
 
-                            override fun onResponse(
-                                call: Call<Map<String, Map<String, Any>>>,
-                                response: Response<Map<String, Map<String, Any>>>
-                            ) {
+                                override fun onResponse(
+                                    call: Call<Map<String, Map<String, Any>>>,
+                                    response: Response<Map<String, Map<String, Any>>>
+                                ) {
 //                            _error.value = false
-                                println(response.body()?.get("_embedded")?.get("clientDTOList"))
-                            }
-                        })
+                                    println(response.body()?.get("_embedded")?.get("clientDTOList"))
+                                }
+                            })
+                        }
                     }
                 }
-            }
+        }
     }
 }
