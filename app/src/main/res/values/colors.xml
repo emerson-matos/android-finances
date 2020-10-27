@@ -1,17 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
 
-    <!--    https://color.adobe.com/pt/trends-->
-    <color name="colorBackground1">#EBEFF2</color>
-    <color name="colorBackground2">#93AEBF</color>
-    <color name="colorBackground3">#648C66</color>
-    <color name="colorBackground4">#D9C148</color>
-    <color name="colorBackground5">#A63838</color>
+    <!--Color-->
+    <color name="primaryDark">#10c966</color>
+    <color name="primaryLight">#009c33</color>
+    <color name="primaryDarkVariant">#008a26</color>
+    <color name="primaryLightVariant">#006a11</color>
 
-    <color name="grey_100">#F5F5F5</color>
-    <color name="grey_300">#E0E0E0</color>
-    <color name="grey_500">#9E9E9E</color>
+    <color name="secondary">#eda5a0</color>
+    <color name="secondaryVariant">#f55c3c</color>
+
+    <color name="errorDark">#cf6679</color>
+    <color name="errorLight">#b00020</color>
+    <!--Color palette-->
+
+    <color name="purple_200">@color/primaryDark</color> <!--Color primary (dark)-->
+    <color name="purple_500">@color/primaryLight</color> <!--Color primary (light)-->
+    <color name="purple_600">@color/primaryDarkVariant</color> <!--Color primary variant (dark)-->
+    <color name="purple_700">@color/primaryLightVariant</color> <!--Color primary variant (light)-->
+
+    <color name="green_200">@color/secondary</color> <!--Color secondary-->
+    <color name="green_500">@color/secondaryVariant</color> <!--Color secondary variant-->
+
+    <color name="red_200">@color/errorDark</color> <!--Color error (dark)-->
+    <color name="red_600">@color/errorLight</color> <!--Color error (light)-->
+
+    <!--Color surface (light), color on error (light), -->
+    <!--color on surface (dark), color on surface (dark)-->
+    <color name="white_50">#ffffff</color>
+
+    <color name="black_800">#121212</color> <!--Color surface (dark)-->
+    <!--Color on secondary (light), color on background (light),-->
+    <!--color on surface (light)-->
+    <color name="black_900">#000000</color>
+
 </resources>

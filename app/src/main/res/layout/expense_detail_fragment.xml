@@ -22,17 +22,17 @@
             <TextView
                 android:id="@+id/expenseDetailDescriptionLabel"
                 style="@style/secondaryTextLabel"
+                android:layout_marginTop="16dp"
+                android:text="@string/description"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:text="@string/description" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/expenseDetailDescription"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:textSize="@dimen/primaryText"
                 app:layout_constraintEnd_toEndOf="@+id/expenseDetailDescriptionLabel"
                 app:layout_constraintStart_toStartOf="@+id/expenseDetailDescriptionLabel"
                 app:layout_constraintTop_toBottomOf="@+id/expenseDetailDescriptionLabel"
@@ -51,7 +51,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:textSize="@dimen/primaryText"
                 app:layout_constraintEnd_toEndOf="@+id/expenseDetailDescriptionLabel"
                 app:layout_constraintStart_toStartOf="@+id/expenseDetailDescriptionLabel"
                 app:layout_constraintTop_toBottomOf="@+id/expenseDetailCardLabel"
@@ -70,7 +69,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:textSize="@dimen/primaryText"
                 app:layout_constraintEnd_toEndOf="@+id/expenseDetailDescriptionLabel"
                 app:layout_constraintStart_toStartOf="@+id/expenseDetailDescriptionLabel"
                 app:layout_constraintTop_toBottomOf="@+id/expenseDetailAccountLabel"
@@ -89,7 +87,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:textSize="@dimen/primaryText"
                 app:layout_constraintEnd_toEndOf="@+id/expenseDetailDescriptionLabel"
                 app:layout_constraintStart_toStartOf="@+id/expenseDetailDescriptionLabel"
                 app:layout_constraintTop_toBottomOf="@+id/expenseDetailOwnerLabel"
@@ -109,7 +106,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:ems="10"
-                android:textSize="@dimen/primaryText"
                 app:layout_constraintEnd_toEndOf="@+id/expenseDetailDescriptionLabel"
                 app:layout_constraintStart_toStartOf="@+id/expenseDetailDescriptionLabel"
                 app:layout_constraintTop_toBottomOf="@+id/expenseDetailDateLabel"
@@ -127,7 +123,6 @@
                 android:id="@+id/expenseDetailCurrency"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:textSize="@dimen/primaryText"
                 android:layout_marginStart="8dp"
                 app:layout_constraintHorizontal_weight=".3"
                 app:layout_constraintEnd_toEndOf="@+id/expenseDetailDescriptionLabel"
@@ -140,10 +135,9 @@
                 android:id="@+id/expenseDetailValue"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/primaryText"
                 android:layout_marginTop="8dp"
-                app:layout_constraintHorizontal_weight=".7"
                 app:layout_constraintEnd_toStartOf="@+id/expenseDetailCurrency"
+                app:layout_constraintHorizontal_weight=".7"
                 app:layout_constraintStart_toStartOf="@+id/expenseDetailDescriptionLabel"
                 app:layout_constraintTop_toBottomOf="@+id/expenseDetailValueLabel"
                 tools:text="Value" />
@@ -154,22 +148,22 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="192dp"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        android:layout_height="192dp" >
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+            app:toolbarId="@+id/expenseDetailToolbar">
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/expenseDetailToolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />
+                android:theme="@style/Widget.MaterialComponents.Toolbar.Surface"
+                app:layout_collapseMode="pin" />
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

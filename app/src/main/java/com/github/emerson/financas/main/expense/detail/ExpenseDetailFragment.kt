@@ -29,7 +29,7 @@ class ExpenseDetailFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val itemId: Long? = (activity?.intent?.extras?.get("item") as Bundle).get("item") as Long?
-        (requireActivity() as AppCompatActivity).setSupportActionBar(toolbar)
+        (requireActivity() as AppCompatActivity).setSupportActionBar(expenseDetailToolbar)
         (requireActivity() as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
         (requireActivity() as AppCompatActivity).supportActionBar?.setDisplayShowHomeEnabled(true)
         viewModel.getExpense(itemId)
@@ -39,7 +39,7 @@ class ExpenseDetailFragment : Fragment() {
 
     private fun configureViewModel() {
         viewModel.item.observe(viewLifecycleOwner, {
-            collapsing_toolbar.title = it.name
+            requireActivity().title = it.name
             expenseDetailDescription.text = it.description
             expenseDetailCurrency.text = it.currency.toString()
             expenseDetailDate.text = it.formatedDate()

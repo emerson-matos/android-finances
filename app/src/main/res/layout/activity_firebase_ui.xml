@@ -4,7 +4,6 @@
     android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey_100"
     android:orientation="vertical"
     android:weightSum="4">
 
@@ -17,19 +16,15 @@
 
         <ImageView
             android:id="@+id/icon"
-            style="@style/ThemeOverlay.FirebaseIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/ThemeOverlay.AppIcon"
             android:contentDescription="@string/desc_firebase_lockup"
             android:src="@mipmap/ic_launcher" />
 
         <TextView
             android:id="@+id/titleText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/ThemeOverlay.MyTitleText"
             android:layout_marginBottom="@dimen/title_bottom_margin"
-            android:text="@string/firebaseui_title_text"
-            android:theme="@style/ThemeOverlay.MyTitleText" />
+            android:text="@string/app_name" />
 
         <TextView
             android:id="@+id/status"
@@ -48,15 +43,12 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@color/grey_300"
         android:gravity="center_vertical">
 
         <Button
             android:id="@+id/signInButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/Format.WrapContent"
             android:text="@string/sign_in"
-            android:theme="@style/ThemeOverlay.MyDarkButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -65,10 +57,8 @@
 
         <Button
             android:id="@+id/signOutButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/Format.WrapContent"
             android:text="@string/sign_out"
-            android:theme="@style/ThemeOverlay.MyDarkButton"
             app:layout_constraintEnd_toStartOf="@+id/continueButton"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -78,10 +68,8 @@
 
         <Button
             android:id="@+id/continueButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/Format.WrapContent"
             android:text="@string/fui_continue"
-            android:theme="@style/ThemeOverlay.MyDarkButton"
             app:layout_constraintStart_toEndOf="@+id/signOutButton"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
