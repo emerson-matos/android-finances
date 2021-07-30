@@ -58,7 +58,7 @@ android {
             implementation 'com.google.firebase:firebase-auth:21.0.1'
 
             // Firebase Authentication (Kotlin)
-            implementation 'com.google.firebase:firebase-auth-ktx:19.4.0'
+            implementation 'com.google.firebase:firebase-auth-ktx:21.0.1'
 
             // Google Sign In SDK (only required for Google Sign In)
             implementation 'com.google.android.gms:play-services-auth:18.1.0'
