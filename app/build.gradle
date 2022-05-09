@@ -54,7 +54,7 @@ android {
             implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.1-native-mt"
 
             // Firebase Authentication (Java)
-            implementation 'com.google.firebase:firebase-analytics:19.0.1'
+            implementation 'com.google.firebase:firebase-analytics:21.0.0'
             implementation 'com.google.firebase:firebase-auth:21.0.1'
 
             // Firebase Authentication (Kotlin)
